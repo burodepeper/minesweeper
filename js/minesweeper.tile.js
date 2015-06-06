@@ -32,6 +32,10 @@ Tile.prototype.create = function () {
     self.onClick(event);
   });
 
+  this.element.addEventListener("dblclick", function (event) {
+    self.onDoubleClick(event);
+  });
+
   this.element.addEventListener("contextmenu", function (event) {
     self.onClick(event);
   });
@@ -130,12 +134,54 @@ Tile.prototype.onClick = function (event) {
             }
           }
         }
+
       }
 
     }
 
     this.update();
 
+  } else if (this.isClicked && !minesweeper.gameOver && this.hint) {
+    this.onDoubleClick(event);
   }
 
+}
+
+Tile.prototype.onDoubleClick = function (event) {
+  if (event) {
+    event.preventDefault();
+  }
+  if (this.isClicked && !minesweeper.gameOver && this.hint) {
+
+    var i, j, x, y, tile,
+        buffer = [],
+        count = 0,
+        x1 = this.isFirstColumn ? 0 : -1,
+        x2 = this.isLastColumn ? 1 : 2,
+        y1 = this.isFirstRow ? 0 : -1,
+        y2 = this.isLastRow ? 1 : 2;
+
+    for (i = x1; i < x2; i++) {
+      for (j = y1; j < y2; j++) {
+        if (i || j) {
+          x = this.x + i;
+          y = this.y + j;
+          tile = minesweeper.getTile(x, y);
+          // tile.onClick();
+          if (tile.isMarked) {
+              count++;
+          } else if (!tile.isClicked) {
+            buffer.push(tile);
+          }
+        }
+      }
+    }
+
+    if (count == this.hint) {
+      for (i in buffer) {
+        buffer[i].onClick();
+      }
+    }
+
+  }
 }
