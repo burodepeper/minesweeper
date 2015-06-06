@@ -8,6 +8,7 @@ function Tile (x, y, hint) {
   this.isLastRow = (this.y == minesweeper.rows - 1);
   this.isLastColumn = (this.x == minesweeper.columns - 1);
   this.isClicked = false;
+  this.isMarked = false;
   this.create();
   this.update();
 }
@@ -27,9 +28,14 @@ Tile.prototype.create = function () {
     this.element.appendChild(this.label);
   }
 
-  this.element.addEventListener("click", function () {
-    self.onClick();
+  this.element.addEventListener("click", function (event) {
+    self.onClick(event);
   });
+
+  this.element.addEventListener("contextmenu", function (event) {
+    self.onClick(event);
+  });
+
 }
 
 Tile.prototype.update = function (dontPropagate) {
@@ -38,7 +44,9 @@ Tile.prototype.update = function (dontPropagate) {
 
   this.element.className = "tile";
 
-  if (this.isClicked) {
+  if (this.isMarked) {
+    this.element.className += " marked";
+  } else if (this.isClicked) {
 
     if (this.isMine) {
       this.element.className += " mine";
@@ -77,36 +85,42 @@ Tile.prototype.update = function (dontPropagate) {
 
 }
 
-Tile.prototype.onClick = function () {
+Tile.prototype.onClick = function (event) {
 
   if (!this.isClicked) {
 
-    this.isClicked = true;
-    this.update();
+    if (event && event.button == 2) {
+      this.isMarked = this.isMarked ? false : true;
+      event.preventDefault();
+    } else {
+      this.isClicked = true;
 
-    if (this.isMine) {
-      // alert("Boom...");
-    } else if (this.hint == 0) {
+      if (this.isMine) {
+        // alert("Boom...");
+      } else if (this.hint == 0) {
 
-      // automatic clearing
-      var i, j, x, y, tile,
-          x1 = this.isFirstColumn ? 0 : -1,
-          x2 = this.isLastColumn ? 1 : 2,
-          y1 = this.isFirstRow ? 0 : -1,
-          y2 = this.isLastRow ? 1 : 2;
+        // automatic clearing
+        var i, j, x, y, tile,
+            x1 = this.isFirstColumn ? 0 : -1,
+            x2 = this.isLastColumn ? 1 : 2,
+            y1 = this.isFirstRow ? 0 : -1,
+            y2 = this.isLastRow ? 1 : 2;
 
-      for (i = x1; i < x2; i++) {
-        for (j = y1; j < y2; j++) {
-          if (i || j) {
-            x = this.x + i;
-            y = this.y + j;
-            tile = minesweeper.getTile(x, y);
-            tile.onClick();
+        for (i = x1; i < x2; i++) {
+          for (j = y1; j < y2; j++) {
+            if (i || j) {
+              x = this.x + i;
+              y = this.y + j;
+              tile = minesweeper.getTile(x, y);
+              tile.onClick();
+            }
           }
         }
       }
 
     }
+
+    this.update();
 
   }
 

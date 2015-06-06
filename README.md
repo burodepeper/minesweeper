@@ -4,10 +4,9 @@ Another clone from the good old days.
 
 # TODO
 
-- Mark tiles
 - Detect game ending
 - Double click
-- Graphic for the mines
+- Graphic for mines and flags
 - Sounds
 - Animated popping (including double click)
 - Time and mine counters

@@ -48,6 +48,12 @@ body {
     border: 2px solid rgba(0, 0, 0, 0.5);
     border-left: 2px solid rgba(255, 255, 255, 0.5);
     border-top: 2px solid rgba(255, 255, 255, 0.5);
+    background: rgba(0, 0, 0, 0.0333);
+    border-radius: 2px;
+  }
+
+  .marked {
+    background: rgba(255, 0, 0, 0.5);
   }
 
   .mine {

@@ -13,10 +13,11 @@ var minesweeper = {
     this.newGameButton = document.getElementById("new-game-button");
 
     this.newGameButton.addEventListener("click", function () {
-      self.newGame(30, 16, 99);
+      self.newGame(16, 16, 40);
     });
 
-    this.newGame(30, 16, 99);
+    // this.newGame(30, 16, 99);
+    this.newGame(16, 16, 80);
 
   },
 
