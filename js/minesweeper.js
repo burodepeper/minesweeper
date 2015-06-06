@@ -14,12 +14,13 @@ var minesweeper = {
 
     this.newGameButton.addEventListener("click", function () {
       // self.newGame(30, 16, 99);
-      self.newGame(10, 10, 20);
+      self.newGame(16, 16, 40);
+      // self.newGame(10, 10, 20);
     });
 
     // this.newGame(30, 16, 99);
-    // this.newGame(16, 16, 40);
-    this.newGame(10, 10, 20);
+    this.newGame(16, 16, 40);
+    // this.newGame(10, 10, 20);
 
   },
 
@@ -65,6 +66,7 @@ var minesweeper = {
     // generate hints and tiles
     this.hints = [];
     this.tiles = [];
+    this.buffer = [];
     for (y = 0; y < h; y++) {
       for (x = 0; x < w; x++) {
 
@@ -84,7 +86,18 @@ var minesweeper = {
         this.hints[i] = count;
         this.tiles[i] = new Tile(x, y, isMine ? "mine" : count);
 
+        // buffer empty tiles for random start
+        if (count == 0) {
+          this.buffer.push(i);
+        }
+
       }
+    }
+
+    // pick a random starting tile
+    if (this.buffer.length) {
+      var r = Math.floor(Math.random() * this.buffer.length);
+      this.tiles[this.buffer[r]].onClick();
     }
 
   },
