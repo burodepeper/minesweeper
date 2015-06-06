@@ -9,6 +9,7 @@ function Tile (x, y, hint) {
   this.isLastColumn = (this.x == minesweeper.columns - 1);
   this.isClicked = false;
   this.isMarked = false;
+  this.isEpicenter = false;
   this.create();
   this.update();
 }
@@ -49,11 +50,19 @@ Tile.prototype.update = function (dontPropagate) {
   this.element.className = "tile";
 
   if (this.isMarked) {
-    this.element.className += " marked";
+
+    this.element.className += " button marked";
+    if (minesweeper.gameOver && !this.isMine) {
+      this.element.className += " error";
+    }
+
   } else if (this.isClicked) {
 
     if (this.isMine) {
       this.element.className += " mine";
+      if (this.isEpicenter) {
+        this.element.className += " exploded";
+      }
     } else if (this.hint) {
       this.element.className += " hint hint-"+this.hint;
     }
@@ -69,19 +78,24 @@ Tile.prototype.update = function (dontPropagate) {
     }
 
     if (!this.isLastColumn) {
-      if (minesweeper.getTile(this.x + 1, this.y).isClicked) {
+      if (this.isPassive() && minesweeper.getTile(this.x + 1, this.y).isPassive()) {
         this.element.className += " border-right";
       }
     }
 
     if (!this.isLastRow) {
-      if (minesweeper.getTile(this.x, this.y + 1).isClicked) {
+      if (this.isPassive() && minesweeper.getTile(this.x, this.y + 1).isPassive()) {
         this.element.className += " border-bottom";
       }
     }
 
   } else {
+
     this.element.className += " button";
+    if (minesweeper.gameOver && this.isMine) {
+      this.element.className += " mine";
+    }
+
   }
 
   if (this.isLastRow) this.element.className += " last-row";
@@ -91,6 +105,14 @@ Tile.prototype.update = function (dontPropagate) {
     minesweeper.checkGame();
   }
 
+}
+
+Tile.prototype.isPassive = function () {
+  if (this.isEpicenter) {
+    return false;
+  } else {
+    return this.isClicked;
+  }
 }
 
 Tile.prototype.onClick = function (event) {
@@ -114,7 +136,10 @@ Tile.prototype.onClick = function (event) {
       minesweeper.tilesLeft -= 1;
 
       if (this.isMine) {
+
+        this.isEpicenter = true;
         minesweeper.endGame();
+
       } else if (this.hint == 0) {
 
         // automatic clearing
@@ -167,7 +192,6 @@ Tile.prototype.onDoubleClick = function (event) {
           x = this.x + i;
           y = this.y + j;
           tile = minesweeper.getTile(x, y);
-          // tile.onClick();
           if (tile.isMarked) {
               count++;
           } else if (!tile.isClicked) {

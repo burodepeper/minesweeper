@@ -13,13 +13,13 @@ var minesweeper = {
     this.newGameButton = document.getElementById("new-game-button");
 
     this.newGameButton.addEventListener("click", function () {
-      self.newGame(30, 16, 99);
-      // self.newGame(10, 10, 20);
+      // self.newGame(30, 16, 99);
+      self.newGame(10, 10, 20);
     });
 
-    this.newGame(30, 16, 99);
+    // this.newGame(30, 16, 99);
     // this.newGame(16, 16, 40);
-    // this.newGame(10, 10, 20);
+    this.newGame(10, 10, 20);
 
   },
 
@@ -101,7 +101,7 @@ var minesweeper = {
 
   checkGame: function () {
     if (this.gameOver) {
-      alert("You lost!");
+      // alert("You lost!");
     } else if (this.tilesLeft == this.numberOfMines) {
       alert("You won!");
     }
@@ -109,6 +109,9 @@ var minesweeper = {
 
   endGame: function () {
     this.gameOver = true;
+    for (var i = 0; i < this.tiles.length; i++) {
+      this.tiles[i].update(true);
+    }
   }
 
 }

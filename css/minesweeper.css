@@ -48,19 +48,27 @@ body {
 
   .button {
     border: 2px solid rgba(0, 0, 0, 0.5);
-    border-left: 2px solid rgba(255, 255, 255, 0.5);
-    border-top: 2px solid rgba(255, 255, 255, 0.5);
+    border-left-color: rgba(255, 255, 255, 0.5);
+    border-top-color: rgba(255, 255, 255, 0.5);
     background: rgba(0, 0, 0, 0.05);
     border-radius: 2px;
   }
 
   .marked {
-    background: rgba(255, 0, 0, 0.5);
+    background-image: url(../images/marked.svg);
   }
 
+    .marked.error {
+      background-image: url(../images/marked-error.svg);
+    }
+
   .mine {
-    background: rgba(0, 0, 0, 0.5);
+    background-image: url(../images/mine.svg);
   }
+
+    .mine.exploded {
+      background-color: #d00;
+    }
 
   .hint {
     text-align: center;
