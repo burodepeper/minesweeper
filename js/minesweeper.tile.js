@@ -83,20 +83,34 @@ Tile.prototype.update = function (dontPropagate) {
   if (this.isLastRow) this.element.className += " last-row";
   if (this.isLastColumn) this.element.className += " last-column";
 
+  if (!dontPropagate) {
+    minesweeper.checkGame();
+  }
+
 }
 
 Tile.prototype.onClick = function (event) {
 
-  if (!this.isClicked) {
+  if (!this.isClicked && !minesweeper.gameOver) {
 
     if (event && event.button == 2) {
-      this.isMarked = this.isMarked ? false : true;
+
+      if (this.isMarked) {
+        this.isMarked = false;
+        minesweeper.markedTiles -= 1;
+      } else {
+        this.isMarked = true;
+        minesweeper.markedTiles += 1;
+      }
       event.preventDefault();
+
     } else {
+
       this.isClicked = true;
+      minesweeper.tilesLeft -= 1;
 
       if (this.isMine) {
-        // alert("Boom...");
+        minesweeper.endGame();
       } else if (this.hint == 0) {
 
         // automatic clearing
