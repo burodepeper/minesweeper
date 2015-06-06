@@ -6,8 +6,6 @@ body {
 #container {
   position: absolute;
   top: 50%; left: 50%;
-  width: 320px; height: 32px;
-  margin: -16px 0 0 -160px;
 }
 
 #interface {
@@ -15,6 +13,50 @@ body {
   top: 0; left: 0; right: 0;
   height: 32px;
 }
+
+  #time {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+
+  #mines {
+    position: absolute;
+    top: 0;
+    right: 50px;
+  }
+
+  #tiles {
+    position: absolute;
+    top: 0;
+    right: 100px;
+  }
+
+  .counter {
+    height: 32px;
+    overflow:hidden;
+  }
+
+    .digit {
+      position: relative;
+      top: 0;
+      display: inline-block;
+      font-size: 20px;
+      line-height: 32px;
+      font-weight: 100;
+      transition: top 0.25s;
+    }
+
+      .digit-0 { top: 0; }
+      .digit-1 { top: -32px; }
+      .digit-2 { top: -64px; }
+      .digit-3 { top: -96px; }
+      .digit-4 { top: -128px; }
+      .digit-5 { top: -160px; }
+      .digit-6 { top: -192px; }
+      .digit-7 { top: -224px; }
+      .digit-8 { top: -256px; }
+      .digit-9 { top: -288px; }
 
 #viewport {
   position: absolute;

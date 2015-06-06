@@ -11,16 +11,19 @@ var minesweeper = {
     this.interface = document.getElementById("interface");
     this.viewport = document.getElementById("viewport");
     this.newGameButton = document.getElementById("new-game-button");
+    this.time = new Counter("time", 3);
+    this.counterTiles = new Counter("tiles", 3);
+    this.counterMines = new Counter("mines", 3);
 
     this.newGameButton.addEventListener("click", function () {
       // self.newGame(30, 16, 99);
       self.newGame(16, 16, 40);
-      // self.newGame(10, 10, 20);
+      // self.newGame(8, 8, 10);
     });
 
     // this.newGame(30, 16, 99);
     this.newGame(16, 16, 40);
-    // this.newGame(10, 10, 20);
+    // this.newGame(8, 8, 10);
 
   },
 
@@ -30,7 +33,8 @@ var minesweeper = {
         height = h * this.tileSize,
         n = numberOfMines,
         i, a, b, count, x, y, xx, yy,
-        element, isMine;
+        element, isMine,
+        self = this;
 
     this.columns = w;
     this.rows = h;
@@ -38,12 +42,18 @@ var minesweeper = {
     this.tilesLeft = w * h;
     this.markedTiles = 0;
     this.gameOver = false;
+    this.time.setValue(0);
+    this.startedAt = new Date().getTime();
+    this.timerInterval = setInterval(function () {
+      self.updateTime();
+    }, 250);
 
     this.viewport.style.width = width + "px";
     this.viewport.style.height = height + "px";
     this.viewport.style.top = this.interfaceHeight + "px";
     this.container.style.marginLeft = -(width / 2) + "px";
     this.container.style.marginTop = -((height + this.interfaceHeight) / 2) + "px";
+    this.container.style.width = width + "px";
 
     // reset and clear all previous stuff
     this.viewport.innerHTML = "";
@@ -116,15 +126,26 @@ var minesweeper = {
     if (this.gameOver) {
       // alert("You lost!");
     } else if (this.tilesLeft == this.numberOfMines) {
+      clearInterval(this.timerInterval);
       alert("You won!");
+    } else {
+      this.counterTiles.setValue(this.tilesLeft);
+      this.counterMines.setValue(this.numberOfMines - this.markedTiles);
     }
   },
 
   endGame: function () {
     this.gameOver = true;
+    clearInterval(this.timerInterval);
     for (var i = 0; i < this.tiles.length; i++) {
       this.tiles[i].update(true);
     }
+  },
+
+  updateTime: function () {
+    var now = new Date().getTime(),
+        seconds = Math.floor((now - this.startedAt) / 1000);
+    this.time.setValue(seconds);
   }
 
 }

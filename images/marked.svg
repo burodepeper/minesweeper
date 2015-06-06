@@ -3,23 +3,39 @@
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 30 30" enable-background="new 0 0 30 30" xml:space="preserve">
-<line fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-miterlimit="10" x1="-59" y1="6" x2="-59" y2="22"/>
-<rect x="-73" y="6" fill="#DD0000" width="14" height="8"/>
-<polygon opacity="0.5" fill="#FFFFFF" points="-73,14 -59,6 -73,6 "/>
-<line opacity="0.1" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-miterlimit="10" x1="-70" y1="22" x2="-59" y2="22"/>
-<line fill="none" stroke="#000000" stroke-width="4" stroke-linecap="round" stroke-miterlimit="10" x1="-19" y1="6" x2="-19" y2="22"/>
-<rect x="-33" y="6" fill="#DD0000" width="14" height="10"/>
-<polygon opacity="0.5" fill="#FFFFFF" points="-33,16 -19,6 -33,6 "/>
-<line opacity="0.1" fill="none" stroke="#000000" stroke-width="4" stroke-linecap="round" stroke-miterlimit="10" x1="-29" y1="22" x2="-19" y2="22"/>
+<line fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-miterlimit="10" x1="-99" y1="6" x2="-99" y2="22"/>
+<rect x="-113" y="6" fill="#DD0000" width="14" height="8"/>
+<polygon opacity="0.5" fill="#FFFFFF" points="-113,14 -99,6 -113,6 "/>
+<line opacity="0.1" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-miterlimit="10" x1="-110" y1="22" x2="-99" y2="22"/>
+<line fill="none" stroke="#000000" stroke-width="4" stroke-linecap="round" stroke-miterlimit="10" x1="-59" y1="6" x2="-59" y2="22"/>
+<rect x="-73" y="6" fill="#DD0000" width="14" height="10"/>
+<polygon opacity="0.5" fill="#FFFFFF" points="-73,16 -59,6 -73,6 "/>
+<line opacity="0.1" fill="none" stroke="#000000" stroke-width="4" stroke-linecap="round" stroke-miterlimit="10" x1="-69" y1="22" x2="-59" y2="22"/>
+<g>
+	<rect x="-30" y="6" fill="#DD0000" width="14" height="10"/>
+	<polygon fill="#FFFFFF" points="-30,16 -16,6 -30,6 	"/>
+</g>
+<g>
+	
+		<line fill="none" stroke="#000000" stroke-width="4" stroke-linecap="round" stroke-miterlimit="10" x1="-32" y1="6" x2="-32" y2="22"/>
+	
+		<line opacity="0.25" fill="none" stroke="#000000" stroke-width="4" stroke-linecap="round" stroke-miterlimit="10" x1="-32" y1="22" x2="-22" y2="22"/>
+	<path opacity="0.25" fill="#FFFFFF" d="M-34,6v16c0,1.1,0.9,2,2,2V4C-33.1,4-34,4.9-34,6z"/>
+</g>
 <g>
 	<rect x="10" y="6" fill="#DD0000" width="14" height="10"/>
 	<polygon fill="#FFFFFF" points="10,16 24,6 10,6 	"/>
 </g>
 <g>
+	<g opacity="0.25">
+		<linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="18" y1="22" x2="6" y2="22">
+			<stop  offset="0" style="stop-color:#000000;stop-opacity:0"/>
+			<stop  offset="1" style="stop-color:#000000"/>
+		</linearGradient>
+		<path fill="url(#SVGID_1_)" d="M18,25L8,24c-1.1,0-2-0.9-2-2s0.9-2,2-2l10-1V25z"/>
+	</g>
 	
 		<line fill="none" stroke="#000000" stroke-width="4" stroke-linecap="round" stroke-miterlimit="10" x1="8" y1="6" x2="8" y2="22"/>
-	
-		<line opacity="0.25" fill="none" stroke="#000000" stroke-width="4" stroke-linecap="round" stroke-miterlimit="10" x1="8" y1="22" x2="18" y2="22"/>
 	<path opacity="0.25" fill="#FFFFFF" d="M6,6v16c0,1.1,0.9,2,2,2V4C6.9,4,6,4.9,6,6z"/>
 </g>
 </svg>
