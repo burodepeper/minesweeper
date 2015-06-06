@@ -23,25 +23,32 @@ body {
 }
 
   .tile {
+    box-sizing: border-box;
     position: absolute;
     width: 30px; height: 30px;
   }
 
-    .tile:not(.last-column):after {
+    .border-right:not(.last-column):after {
       content: '';
       position: absolute;
       top: 2px; left: 30px;
       width: 2px; height: 26px;
-      border-left: 2px dotted rgba(0, 0, 0, 0.5);
+      border-left: 2px dotted rgba(0, 0, 0, 0.333);
     }
 
-    .tile:not(.last-row):before {
+    .border-bottom:not(.last-row):before {
       content: '';
       position: absolute;
       top: 30px; left: 2px;
       width: 26px; height: 2px;
-      border-top: 2px dotted rgba(0, 0, 0, 0.5);
+      border-top: 2px dotted rgba(0, 0, 0, 0.333);
     }
+
+  .button {
+    border: 2px solid rgba(0, 0, 0, 0.5);
+    border-left: 2px solid rgba(255, 255, 255, 0.5);
+    border-top: 2px solid rgba(255, 255, 255, 0.5);
+  }
 
   .mine {
     background: rgba(0, 0, 0, 0.5);
@@ -62,3 +69,7 @@ body {
     .hint-6 { color: #099; }
     .hint-7 { color: #909; }
     .hint-8 { color: #000; }
+
+  .tile:not(.hint) span {
+    display: none;
+  }

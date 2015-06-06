@@ -26,7 +26,10 @@ var minesweeper = {
         height = h * this.tileSize,
         n = numberOfMines,
         i, a, b, count, x, y, xx, yy,
-        element;
+        element, isMine;
+
+    this.columns = w;
+    this.rows = h;
 
     this.viewport.style.width = width + "px";
     this.viewport.style.height = height + "px";
@@ -52,13 +55,15 @@ var minesweeper = {
       }
     }
 
-    // generate hints
+    // generate hints and tiles
     this.hints = [];
+    this.tiles = [];
     for (y = 0; y < h; y++) {
       for (x = 0; x < w; x++) {
 
         i = (y * w) + x;
         count = 0;
+        isMine = this.minefield[i];
         for (a = -1; a < 2; a++) {
           for (b = -1; b < 2; b++) {
             xx = x + b;
@@ -70,35 +75,21 @@ var minesweeper = {
           }
         }
         this.hints[i] = count;
+        this.tiles[i] = new Tile(x, y, isMine ? "mine" : count);
 
       }
     }
 
-    // TODO draw mines and hints as a test
-    for (y = 0; y < h; y++) {
-      for (x = 0; x < w; x++) {
-        i = (y * w) + x;
-        xx = (x * this.tileSize) + 1;
-        yy = (y * this.tileSize) + 1;
-        element = document.createElement("div");
-        element.style.left = xx + "px";
-        element.style.top = yy + "px";
-        this.viewport.appendChild(element);
-        if (this.minefield[i]) {
-          element.className = "tile mine";
-        } else if (this.hints[i]) {
-          element.className = "tile hint hint-"+this.hints[i];
-          element.appendChild(document.createTextNode(this.hints[i]));
-        } else {
-          element.className = "tile empty";
-        }
-        if (y == h - 1) element.className += " last-row";
-        if (x == w - 1) element.className += " last-column";
-      }
-    }
+  },
 
-    // TODO draw buttons (but don't draw the background) and create eventListeners
+  addTile: function (element) {
+    this.viewport.appendChild(element);
+  },
 
+  getTile: function (x, y) {
+    var i = (y * this.columns) + x,
+        tile = this.tiles[i];
+    return tile;
   }
 
 }
