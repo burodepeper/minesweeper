@@ -1,0 +1,64 @@
+body {
+  font: 12px/16px "Input Sans Condensed", sans-serif;
+  background: rgba(0, 0, 0, 0.1);
+}
+
+#container {
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 320px; height: 32px;
+  margin: -16px 0 0 -160px;
+}
+
+#interface {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 32px;
+}
+
+#viewport {
+  position: absolute;
+  left: 0;
+  background: rgba(0, 0, 0, 0.15);
+}
+
+  .tile {
+    position: absolute;
+    width: 30px; height: 30px;
+  }
+
+    .tile:not(.last-column):after {
+      content: '';
+      position: absolute;
+      top: 2px; left: 30px;
+      width: 2px; height: 26px;
+      border-left: 2px dotted rgba(0, 0, 0, 0.5);
+    }
+
+    .tile:not(.last-row):before {
+      content: '';
+      position: absolute;
+      top: 30px; left: 2px;
+      width: 26px; height: 2px;
+      border-top: 2px dotted rgba(0, 0, 0, 0.5);
+    }
+
+  .mine {
+    background: rgba(0, 0, 0, 0.5);
+  }
+
+  .hint {
+    text-align: center;
+    line-height: 30px;
+    font-size: 20px;
+    font-weight: bold;
+  }
+
+    .hint-1 { color: #30f; }
+    .hint-2 { color: #080; }
+    .hint-3 { color: #d00; }
+    .hint-4 { color: #008; }
+    .hint-5 { color: #800; }
+    .hint-6 { color: #099; }
+    .hint-7 { color: #909; }
+    .hint-8 { color: #000; }
