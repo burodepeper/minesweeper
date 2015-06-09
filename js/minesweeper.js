@@ -62,10 +62,11 @@ var minesweeper = {
 
     this.viewport.style.width = width + "px";
     this.viewport.style.height = height + "px";
-    this.viewport.style.top = this.interfaceHeight + "px";
-    this.container.style.marginLeft = -(width / 2) + "px";
+    this.viewport.style.top = (this.interfaceHeight + 16) + "px";
+    this.container.style.marginLeft = -((width + 16) / 2) + "px";
     this.container.style.marginTop = -((height + this.interfaceHeight) / 2) + "px";
-    this.container.style.width = width + "px";
+    this.container.style.width = (width + 16) + "px";
+    this.container.style.height = (height + this.interfaceHeight + 24) + "px";
 
     // reset and clear all previous stuff
     this.viewport.innerHTML = "";
@@ -163,6 +164,9 @@ var minesweeper = {
 
   setDifficulty: function (difficulty) {
     this.difficulty = difficulty;
+    this.easy.className = (difficulty == "easy") ? "current" : "";
+    this.medium.className = (difficulty == "medium") ? "current" : "";
+    this.hard.className = (difficulty == "hard") ? "current" : "";
   }
 
 }
