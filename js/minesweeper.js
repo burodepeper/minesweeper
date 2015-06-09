@@ -8,6 +8,7 @@ var minesweeper = {
     var self = this;
 
     this.audio.init();
+    this.highscores.init();
 
     this.container = document.getElementById("container");
     this.interface = document.getElementById("interface");
@@ -20,18 +21,21 @@ var minesweeper = {
     this.counterMines = new Counter("mines", 3);
 
     this.easy.addEventListener("click", function () {
+      self.setDifficulty("easy");
       self.newGame(8, 8, 10);
     });
 
     this.medium.addEventListener("click", function () {
+      self.setDifficulty("medium");
       self.newGame(16, 16, 40);
     });
 
     this.hard.addEventListener("click", function () {
+      self.setDifficulty("hard");
       self.newGame(30, 16, 99);
     });
 
-    this.newGame(16, 16, 40);
+    // this.newGame(16, 16, 40);
 
   },
 
@@ -135,6 +139,7 @@ var minesweeper = {
       // alert("You lost!");
     } else if (this.tilesLeft == this.numberOfMines) {
       clearInterval(this.timerInterval);
+      this.highscores.add(this.difficulty, (new Date().getTime() - this.startedAt) / 1000);
       alert("You won!");
     } else {
       this.counterTiles.setValue(this.tilesLeft);
@@ -154,6 +159,10 @@ var minesweeper = {
     var now = new Date().getTime(),
         seconds = Math.floor((now - this.startedAt) / 1000);
     this.time.setValue(seconds);
+  },
+
+  setDifficulty: function (difficulty) {
+    this.difficulty = difficulty;
   }
 
 }
