@@ -73,7 +73,6 @@ Tile.prototype.update = function (dontPropagate) {
       if (!this.isFirstColumn) {
         minesweeper.getTile(this.x - 1, this.y).update(true);
       }
-
       if (!this.isFirstRow) {
         minesweeper.getTile(this.x, this.y - 1).update(true);
       }
@@ -148,6 +147,7 @@ Tile.prototype.onClick = function (event) {
 
         // automatic clearing
         var i, j, x, y, tile,
+            count = 0,
             x1 = this.isFirstColumn ? 0 : -1,
             x2 = this.isLastColumn ? 1 : 2,
             y1 = this.isFirstRow ? 0 : -1,
@@ -159,7 +159,15 @@ Tile.prototype.onClick = function (event) {
               x = this.x + i;
               y = this.y + j;
               tile = minesweeper.getTile(x, y);
-              tile.onClick();
+              // tile.onClick();
+
+              setTimeout(function (tile) {
+                return function () {
+                  tile.onClick();
+                };
+              }(tile), 50 * count);
+
+              count++;
             }
           }
         }
@@ -181,7 +189,7 @@ Tile.prototype.onDoubleClick = function (event) {
   if (event) {
     event.preventDefault();
   }
-  
+
   if (this.isClicked && !minesweeper.gameOver && this.hint) {
 
     var i, j, x, y, tile,

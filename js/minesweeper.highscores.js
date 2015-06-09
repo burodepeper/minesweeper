@@ -28,6 +28,7 @@ minesweeper.highscores = {
   add: function (difficulty, score) {
     var current = this.data[difficulty];
     if (!current || score < current.score) {
+      console.log("new highscore", score);
       this.data[difficulty] = {
         "score": score,
         "timestamp": new Date().getTime()
