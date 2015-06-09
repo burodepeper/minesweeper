@@ -7,23 +7,31 @@ var minesweeper = {
 
     var self = this;
 
+    this.audio.init();
+
     this.container = document.getElementById("container");
     this.interface = document.getElementById("interface");
     this.viewport = document.getElementById("viewport");
-    this.newGameButton = document.getElementById("new-game-button");
+    this.easy = document.getElementById("easy");
+    this.medium = document.getElementById("medium");
+    this.hard = document.getElementById("hard");
     this.time = new Counter("time", 3);
     this.counterTiles = new Counter("tiles", 3);
     this.counterMines = new Counter("mines", 3);
 
-    this.newGameButton.addEventListener("click", function () {
-      // self.newGame(30, 16, 99);
-      self.newGame(16, 16, 40);
-      // self.newGame(8, 8, 10);
+    this.easy.addEventListener("click", function () {
+      self.newGame(8, 8, 10);
     });
 
-    // this.newGame(30, 16, 99);
+    this.medium.addEventListener("click", function () {
+      self.newGame(16, 16, 40);
+    });
+
+    this.hard.addEventListener("click", function () {
+      self.newGame(30, 16, 99);
+    });
+
     this.newGame(16, 16, 40);
-    // this.newGame(8, 8, 10);
 
   },
 

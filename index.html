@@ -8,14 +8,28 @@
   <body onload='minesweeper.init();' oncontextmenu='return false'>
     <div id='container'>
       <div id='interface'>
-        <button id='new-game-button'>Reset</button>
+        <button class='button' id='easy'>Easy</button>
+        <button class='button' id='medium'>Medium</button>
+        <button class='button' id='hard'>Hard</button>
         <div class='counter' id='mines'></div>
         <div class='counter' id='tiles'></div>
         <div class='counter' id='time'></div>
       </div>
       <div id='viewport'></div>
+      <div id='audio'>
+        <audio src='audio/tap-double.m4a' preload='yes' id='audio-tap-1'>
+        <audio src='audio/tap-hollow.m4a' preload='yes' id='audio-tap-2'>
+        <audio src='audio/tap-kissy.m4a' preload='yes' id='audio-tap-3'>
+        <audio src='audio/tap-mellow.m4a' preload='yes' id='audio-tap-4'>
+        <audio src='audio/tap-resonant.m4a' preload='yes' id='audio-tap-5'>
+        <audio src='audio/tap-simple.m4a' preload='yes' id='audio-tap-6'>
+        <audio src='audio/tap-smallest.m4a' preload='yes' id='audio-tap-7'>
+        <audio src='audio/tap-toothy.m4a' preload='yes' id='audio-tap-8'>
+        <audio src='audio/tap-vocal.m4a' preload='yes' id='audio-tap-9'>
+      </div>
     </div>
     <script src='js/minesweeper.js'></script>
+    <script src='js/minesweeper.audio.js'></script>
     <script src='js/minesweeper.tile.js'></script>
     <script src='js/minesweeper.counter.js'></script>
     <script src='js/minesweeper.digit.js'></script>

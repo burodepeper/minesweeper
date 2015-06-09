@@ -1,4 +1,5 @@
 function Tile (x, y, hint) {
+
   this.x = x;
   this.y = y;
   this.hint = hint;
@@ -12,6 +13,7 @@ function Tile (x, y, hint) {
   this.isEpicenter = false;
   this.create();
   this.update();
+
 }
 
 Tile.prototype.create = function () {
@@ -119,6 +121,8 @@ Tile.prototype.onClick = function (event) {
 
   if (!this.isClicked && !minesweeper.gameOver) {
 
+    minesweeper.audio.play("tap");
+
     if (event && event.button == 2) {
 
       if (this.isMarked) {
@@ -173,9 +177,11 @@ Tile.prototype.onClick = function (event) {
 }
 
 Tile.prototype.onDoubleClick = function (event) {
+
   if (event) {
     event.preventDefault();
   }
+  
   if (this.isClicked && !minesweeper.gameOver && this.hint) {
 
     var i, j, x, y, tile,

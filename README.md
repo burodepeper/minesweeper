@@ -4,12 +4,13 @@ Another nostalgic clone.
 
 # TODO
 
-- Time and mine counters (retro counter)
-- New game options
 - Touch interface (hold finger for marker)
-- Highscore
+- End of game overlay + sounds
+- Highscores (local)
 - Randomize via a seed
-- Sounds
 - Animated popping with sounds (including double click)
+- Highscores (online): score + seed
 - Bug: when you left click on a mine, and immediately right click, the wrong tile is shown
 - Bug: you can still click on a marker, and activate the mine
+- New game options
+- Bug: interface doesn't fit on small preset
